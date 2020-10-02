@@ -1,13 +1,84 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.material-icons-two-tone,
+.material-icons.material-icons--two-tone {
+    font-family: "Material Icons Two Tone";
+}
+
+.btn-large {
+    margin-right: 1rem;
+}
+
+.page_wrap {
+    min-height: 100vh;
+}
+
+/*********** DASHBOARD *********/
+
+.dash_post_reactions,
+.dash_post_user_row {
+    display: flex;
+}
+
+.user_avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/*********** LOADER ************/
+
+.bouncingLoader > div,
+.bouncingLoader:before,
+.bouncingLoader:after {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background: hsl(0deg 80% 62%);
+    margin-bottom: -5px;
+    border-radius: 50%;
+    animation: bouncing-loader 0.6s infinite alternate;
+}
+
+.bouncingLoader > div,
+.bouncingLoader:before,
+.bouncingLoader:after {
+    content: "";
+}
+
+.bouncingLoader > div {
+    margin: 0 5px;
+}
+
+.bouncingLoader > div {
+    animation-delay: 0.2s;
+}
+
+.bouncingLoader:after {
+    animation-delay: 0.4s;
+}
+
+@keyframes bouncing-loader {
+    to {
+        opacity: 0.1;
+        transform: translate3d(0, -16px, 0);
+    }
 }

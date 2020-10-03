@@ -33,8 +33,10 @@ code {
 
 /*********** DASHBOARD *********/
 
+.dashboard_wrap,
 .dash_post_reactions,
-.dash_post_user_row {
+.dash_post_user_row,
+.dash_user_profile {
     display: flex;
 }
 

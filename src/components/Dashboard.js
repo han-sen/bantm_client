@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Loader from "./Loader";
-import DashPost from "./DashPost";
+import React, { useEffect, useState, useContext } from "react";
+import UserContext from "../context/UserContext";
 import axios from "axios";
+import Loader from "./Loader";
+import DashUserProfile from "./DashUserProfile";
+import DashPost from "./DashPost";
+import PostFeed from "./PostFeed";
 
 const Dashboard = (props) => {
+    const user = useContext(UserContext);
     const [posts, updatePosts] = useState([]);
     useEffect(() => {
         (async () => {
@@ -12,7 +16,6 @@ const Dashboard = (props) => {
                     `${process.env.REACT_APP_BASE_API}/posts`
                 );
                 const data = await response.data;
-                console.log(data);
                 updatePosts(data);
             } catch (e) {
                 console.error(e);
@@ -20,12 +23,10 @@ const Dashboard = (props) => {
         })();
     }, []);
     return (
-        <div>
-            <h2>Dashboard</h2>
+        <div className="dashboard_wrap">
+            <DashUserProfile user={props.user} />
             {posts.length > 0 ? (
-                posts.map((post, i) => {
-                    return <DashPost post={post} key={i} />;
-                })
+                <PostFeed posts={posts} />
             ) : (
                 <Loader text="Loading the latest posts..."></Loader>
             )}

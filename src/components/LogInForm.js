@@ -18,28 +18,42 @@ function LogInForm(props) {
         });
     };
     // handle new user signup
-    const handleLogin = async (event) => {
+    const handleLogin = (event) => {
         event.preventDefault();
         setIsLoading(true);
         setError(null);
-        try {
-            const response = await axios.post(
-                `${process.env.REACT_APP_BASE_API}/login`,
-                {
-                    email: logInInput.email,
-                    password: logInInput.password,
-                }
-            );
-            console.log(response);
-            console.log(response.data.userToken);
-            localStorage.setItem("token", response.data.userToken);
-            setIsLoading(false);
-            history.push("/dashboard");
-        } catch (error) {
-            console.log(error.response.data);
-            setError(error.response.data.message);
-            setIsLoading(false);
-        }
+        axios
+            .post(`${process.env.REACT_APP_BASE_API}/login`, {
+                email: logInInput.email,
+                password: logInInput.password,
+            })
+            .then((response) => {
+                console.log(response);
+                console.log(response.data.userToken);
+                localStorage.setItem("token", response.data.userToken);
+                logIn();
+                return response.data.userToken;
+            })
+            .then((token) => {
+                return axios.get(`${process.env.REACT_APP_BASE_API}/user`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+            })
+            .then((response) => {
+                props.updateUser(response.data);
+                setIsLoading(false);
+                history.push("/dashboard");
+            })
+            .catch((error) => {
+                console.log(error);
+                // setError(error);
+                setIsLoading(false);
+            });
+    };
+    const logIn = () => {
+        props.setIsLoggedIn(true);
     };
     return (
         <div className="signUp_wrap white-text">

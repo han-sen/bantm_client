@@ -19,28 +19,44 @@ function SignUpForm(props) {
         });
     };
     // handle new user signup
-    const handleSignUp = async (event) => {
+    const handleSignUp = (event) => {
         event.preventDefault();
         setIsLoading(true);
-        try {
-            const response = await axios.post(
-                `${process.env.REACT_APP_BASE_API}/signup`,
-                {
-                    email: signUpInput.email,
-                    password: signUpInput.password,
-                    confirmPassword: signUpInput.confirmPassword,
-                    userName: signUpInput.userName,
-                }
-            );
-            console.log(response);
-            console.log(response.data.userToken);
-            localStorage.setItem("token", response.data.userToken);
-            setIsLoading(false);
-            history.push("/dashboard");
-        } catch (err) {
-            console.log(err.response.data);
-            setIsLoading(false);
-        }
+        axios
+            .post(`${process.env.REACT_APP_BASE_API}/signup`, {
+                email: signUpInput.email,
+                password: signUpInput.password,
+                confirmPassword: signUpInput.confirmPassword,
+                userName: signUpInput.userName,
+            })
+            .then((response) => {
+                console.log(response);
+                console.log(response.data.userToken);
+                localStorage.setItem("token", response.data.userToken);
+                const token = response.data.userToken;
+                return token;
+            })
+            .then((token) => {
+                return axios.get(`${process.env.REACT_APP_BASE_API}/user`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+            })
+            .then((response) => {
+                console.log("reponse at problem point: ", response);
+                props.updateUser(response.data);
+                logIn();
+                setIsLoading(false);
+                history.push("/dashboard");
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+                setIsLoading(false);
+            });
+    };
+    const logIn = () => {
+        props.setIsLoggedIn(true);
     };
     return (
         <div className="signUp_wrap white-text">

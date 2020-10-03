@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Nav = (props) => {
-    const handeLogout = () => {
+    const handleLogout = () => {
         localStorage.clear();
         props.logOut();
     };
@@ -12,7 +12,7 @@ const Nav = (props) => {
             <li key={3}>
                 <Link to="/dashboard">Dashboard</Link>
             </li>,
-            <li onClick={handeLogout} key={4}>
+            <li onClick={handleLogout} key={4}>
                 <Link to="/">Logout</Link>
             </li>
         );

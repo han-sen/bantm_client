@@ -25,7 +25,7 @@ function App() {
         } else {
             setIsLoggedIn(false);
         }
-    }, [isLoggedIn]);
+    }, []);
 
     useEffect(() => {
         (async () => {
@@ -43,11 +43,9 @@ function App() {
                     console.log("user data is: ", data);
                     setUser({
                         ...user,
-                        userId: data.userId,
-                        userName: data.userName,
-                        location: data.location,
-                        imageUrl: data.imageUrl,
+                        ...data,
                     });
+                    setIsLoggedIn(true);
                 } catch (e) {
                     console.error(e);
                 }
@@ -61,55 +59,55 @@ function App() {
             ...userDetails,
         });
     };
-
+    const logOut = () => {
+        setIsLoggedIn(false);
+    };
     return (
         <UserContext.Provider value={user}>
             <div className="page_wrap indigo darken-4 white-text">
-                <Nav isLoggedIn={isLoggedIn} />
-                <div className="container">
-                    <Switch>
-                        <Route
-                            path="/dashboard"
-                            render={(props) => {
-                                return <Dashboard user={user} />;
-                            }}
-                        />
-                        <Route
-                            path="/register"
-                            render={(props) => {
-                                return (
-                                    <SignUpForm
-                                        setIsLoggedIn={setIsLoggedIn}
-                                        updateUser={updateUser}
-                                    />
-                                );
-                            }}
-                        />
-                        <Route
-                            path="/login"
-                            render={(props) => {
-                                return (
-                                    <LogInForm
-                                        setIsLoggedIn={setIsLoggedIn}
-                                        updateUser={updateUser}
-                                    />
-                                );
-                            }}
-                        />
-                        <Route
-                            path="/:id"
-                            render={(props) => {
-                                return <Blog {...props} />;
-                            }}
-                        />
-                        <Route
-                            path="/"
-                            render={(props) => {
-                                return <Home />;
-                            }}
-                        />
-                    </Switch>
-                </div>
+                <Nav isLoggedIn={isLoggedIn} logOut={logOut} />
+                <Switch>
+                    <Route
+                        path="/dashboard"
+                        render={(props) => {
+                            return <Dashboard user={user} />;
+                        }}
+                    />
+                    <Route
+                        path="/register"
+                        render={(props) => {
+                            return (
+                                <SignUpForm
+                                    setIsLoggedIn={setIsLoggedIn}
+                                    updateUser={updateUser}
+                                />
+                            );
+                        }}
+                    />
+                    <Route
+                        path="/login"
+                        render={(props) => {
+                            return (
+                                <LogInForm
+                                    setIsLoggedIn={setIsLoggedIn}
+                                    updateUser={updateUser}
+                                />
+                            );
+                        }}
+                    />
+                    <Route
+                        path="/:id"
+                        render={(props) => {
+                            return <Blog {...props} />;
+                        }}
+                    />
+                    <Route
+                        path="/"
+                        render={(props) => {
+                            return <Home />;
+                        }}
+                    />
+                </Switch>
             </div>
         </UserContext.Provider>
     );

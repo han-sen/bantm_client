@@ -51,7 +51,7 @@ const Blog = (props) => {
                     return <p>{post.postBody}</p>;
                 })
             ) : (
-                <p>Loading posts...</p>
+                <p>There doesn't appear to be any posts here...</p>
             )}
         </section>
     );

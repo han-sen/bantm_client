@@ -6,7 +6,10 @@ import relativeTime from "dayjs/plugin/relativeTime";
 const DashPost = (props) => {
     dayjs.extend(relativeTime);
     return (
-        <div className="dash_post_wrap" key={`dash_post${props.post.id}`}>
+        <div
+            className="dash_post_wrap fade-in"
+            key={`dash_post${props.post.id}`}
+        >
             <div
                 className="dash_post_user_row"
                 key={`dash_post_row${props.post.id}`}

@@ -97,7 +97,13 @@ function App() {
                     <Route
                         path="/:id"
                         render={(props) => {
-                            return <Blog {...props} />;
+                            return (
+                                <Blog
+                                    {...props}
+                                    user={user}
+                                    setUser={setUser}
+                                />
+                            );
                         }}
                     />
                     <Route

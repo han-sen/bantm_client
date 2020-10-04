@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import EditDetails from "./EditDetails";
 import NewPost from "./NewPost";
 
@@ -11,7 +12,11 @@ const DashUserProfile = (props) => {
                     alt="user-pic"
                     className="user_avatar"
                 />
-                <p className="dash_profile_detail">{props.user.userName}</p>
+                <p className="dash_profile_detail">
+                    <Link to={`/${props.user.userName}`}>
+                        {props.user.userName}
+                    </Link>
+                </p>
             </div>
             <div className="dash_user_profile_row"></div>
             <p className="dash_profile_subheader">Location:</p>
@@ -20,8 +25,10 @@ const DashUserProfile = (props) => {
                 <p className="dash_profile_subheader">Bio:</p>
                 <p className="dash_profile_detail">{props.user.bio}</p>
             </div>
-            <EditDetails user={props.user} setUser={props.setUser} />
-            <NewPost />
+            <div className="dash_profile_buttons">
+                <EditDetails user={props.user} setUser={props.setUser} />
+                <NewPost />
+            </div>
         </div>
     );
 };

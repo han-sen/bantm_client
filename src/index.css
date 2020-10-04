@@ -18,6 +18,12 @@ code {
         monospace;
 }
 
+.page_wrap {
+    background-color: #131a5b;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%232a3793'/%3E%3Cstop offset='1' stop-color='%23131a5b'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23131a5b' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23131a5b' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -41,7 +47,8 @@ code {
 .dashboard_wrap,
 .dash_post_reactions,
 .dash_post_user_row,
-.dash_user_profile {
+.dash_user_profile,
+.dash_profile_buttons {
     display: flex;
 }
 
@@ -53,6 +60,9 @@ code {
     flex-direction: column;
     padding: 2rem;
     min-width: 20rem;
+    height: 22rem;
+    /* background: rgb(255 255 255 / 5%); */
+    margin: 1rem;
 }
 
 .dash_post_wrap {
@@ -112,6 +122,41 @@ code {
     max-height: 90vh;
 }
 
+/********** BLOG *****************/
+
+.blog_header_wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.blog_header_inner {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blog_header_avatar {
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    margin-right: 2rem;
+}
+
+.blog_posts_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    flex-direction: column;
+    margin: 2rem;
+}
+
+.blog_wrap .dash_post_wrap {
+    max-width: 40rem;
+    width: 50%;
+}
+
 /********** SIGNUP **************/
 
 .signUp_wrap {
@@ -136,10 +181,24 @@ code {
     flex-direction: column;
 }
 
+.modal_form input {
+    margin: 1rem 0;
+}
+
 .post_button {
     display: flex;
     justify-content: space-around;
-    width: 50%;
+    width: 6rem;
+}
+
+.progress_outer {
+    height: 0.5rem;
+    background: #192372;
+}
+
+.progress_inner {
+    height: 0.5rem;
+    background: #27a59a;
 }
 
 /*********** LOADER ************/

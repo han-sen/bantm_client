@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import BlogHeader from "./BlogHeader";
+import DashPost from "./DashPost";
 
 const Blog = (props) => {
     const [blog, updateBlog] = useState({});
@@ -19,6 +21,8 @@ const Blog = (props) => {
                     userName: data.userName,
                     location: data.location,
                     imageUrl: data.imageUrl,
+                    headerUrl: data.headerUrl,
+                    bio: data.bio,
                 });
                 return data;
             })
@@ -37,22 +41,21 @@ const Blog = (props) => {
             });
     }, []);
     return (
-        <section>
+        <section className="blog_wrap">
             {Object.keys(blog).length > 0 ? (
-                <div>
-                    <img src={blog.imageUrl} alt="user-avatar" />
-                    <p>{blog.userName}</p>
-                </div>
+                <BlogHeader blog={blog} />
             ) : (
                 <p>Loading blog..</p>
             )}
-            {posts.length > 0 ? (
-                posts.map((post) => {
-                    return <p>{post.postBody}</p>;
-                })
-            ) : (
-                <p>There doesn't appear to be any posts here...</p>
-            )}
+            <div className="blog_posts_wrap fade-in">
+                {posts.length > 0 ? (
+                    posts.map((post) => {
+                        return <DashPost post={post} />;
+                    })
+                ) : (
+                    <p>There doesn't appear to be any posts here...</p>
+                )}
+            </div>
         </section>
     );
 };

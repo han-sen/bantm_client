@@ -6,6 +6,7 @@ import {
 } from "../firebase/config";
 import Modal from "react-modal";
 import axios from "axios";
+import Progress from "./Progress";
 
 const customStyles = {
     content: {
@@ -36,20 +37,21 @@ const EditDetails = (props) => {
         imageUrl: props.user.imageUrl,
     });
     const [file, setFile] = useState(null);
-    const [url, setUrl] = useState(null);
+    const [url, setUrl] = useState(props.user.imageUrl);
     const [fileTwo, setFileTwo] = useState(null);
-    const [urlTwo, setUrlTwo] = useState(null);
+    const [urlTwo, setUrlTwo] = useState(props.user.headerUrl);
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState(null);
     const openModal = () => {
         setIsOpen(true);
     };
     useEffect(() => {
-        // references
         setUserDetails({
             ...userDetails,
             location: props.user.location,
             bio: props.user.bio,
+            headerUrl: props.user.headerUrl,
+            imageUrl: props.user.imageUrl,
         });
     }, [props.user.location, props.user.bio]);
 
@@ -153,13 +155,13 @@ const EditDetails = (props) => {
             });
     };
     return (
-        <>
+        <div className="dash_edit_wrap">
             <button
                 onClick={openModal}
-                className="waves-effect waves-light btn post_button"
+                className="waves-effect waves-light btn post_button blue darken-1"
             >
                 <i className="material-icons">create</i>
-                Profile
+                Edit
             </button>
             <Modal
                 isOpen={modalIsOpen}
@@ -176,24 +178,25 @@ const EditDetails = (props) => {
                     <i className="material-icons">close</i>
                 </button>
                 <form className="modal_form">
+                    {progress > 0 && progress < 100 && (
+                        <Progress progress={progress} />
+                    )}
                     <label htmlFor="postBody">User Pic</label>
                     <input
                         className="input white-text"
                         type="file"
-                        name="postImg"
+                        name="imageUrl"
                         onChange={handleFile}
                         required={true}
-                        value={userDetails.imageUrl}
                     />
                     <label htmlFor="postBody">Header Pic</label>
                     <input
                         className="input white-text"
                         type="file"
-                        name="headerImg"
+                        name="headerUrl"
                         onChange={handleFileTwo}
                         required={true}
                         autoComplete="off"
-                        value={userDetails.headerUrl}
                     />
                     <label htmlFor="postBody">Location</label>
                     <input
@@ -225,7 +228,7 @@ const EditDetails = (props) => {
                     </button>
                 </form>
             </Modal>
-        </>
+        </div>
     );
 };
 

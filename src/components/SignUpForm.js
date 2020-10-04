@@ -91,7 +91,7 @@ function SignUpForm(props) {
                         <label htmlFor="password">Password</label>
                         <input
                             className="input white-text"
-                            type="text"
+                            type="password"
                             name="password"
                             onChange={handleInput}
                             required={true}
@@ -104,7 +104,7 @@ function SignUpForm(props) {
                         </label>
                         <input
                             className="input white-text"
-                            type="text"
+                            type="password"
                             name="confirmPassword"
                             onChange={handleInput}
                             required={true}

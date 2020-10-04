@@ -34,12 +34,27 @@ code {
     font-family: "Material Icons Two Tone";
 }
 
+.bantm_logo {
+    height: 2rem;
+}
+
 .btn-large {
     margin-right: 1rem;
 }
 
 .page_wrap {
     min-height: 100vh;
+}
+
+.home_wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.home_wrap_inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /*********** DASHBOARD *********/
@@ -71,6 +86,18 @@ code {
     padding: 1rem;
     box-shadow: var(--shadow-1);
     border-radius: 0.25rem;
+}
+
+.dash_post_user_row {
+    justify-content: space-between;
+}
+
+.dash_post_user_inner {
+    display: flex;
+}
+
+.dash_post_user {
+    font-size: 1.2rem;
 }
 
 .avatar_row {
@@ -105,6 +132,10 @@ code {
     margin-top: 0.25rem;
 }
 
+.dash_edit_wrap {
+    margin-right: 1rem;
+}
+
 .user_avatar {
     width: 50px;
     height: 50px;
@@ -120,9 +151,14 @@ code {
     min-width: 30rem;
     overflow-y: auto;
     max-height: 90vh;
+    margin: 2rem;
 }
 
 /********** BLOG *****************/
+
+.blog_wrap {
+    background: #1d237e;
+}
 
 .blog_header_wrap {
     display: flex;
@@ -199,6 +235,7 @@ code {
 .progress_inner {
     height: 0.5rem;
     background: #27a59a;
+    transition: width 1s linear;
 }
 
 /*********** LOADER ************/

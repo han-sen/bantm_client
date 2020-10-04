@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import DeleteButton from "./DeleteButton";
+import LikeButton from "./LikeButton";
 
 const DashPost = (props) => {
     dayjs.extend(relativeTime);
@@ -14,18 +16,26 @@ const DashPost = (props) => {
                 className="dash_post_user_row"
                 key={`dash_post_row${props.post.id}`}
             >
-                <div
-                    alt="user-avatar"
-                    className="user_avatar circle responsive-img"
-                    style={{
-                        backgroundImage: `url(${props.post.imageUrl})`,
-                    }}
-                ></div>
-                <p key={props.post.userName + `dash_post${props.id}`}>
-                    <Link to={`/${props.post.userName}`}>
-                        {props.post.userName}
-                    </Link>
-                </p>
+                <div className="dash_post_user_inner">
+                    <div
+                        alt="user-avatar"
+                        className="user_avatar circle responsive-img"
+                        style={{
+                            backgroundImage: `url(${props.post.imageUrl})`,
+                        }}
+                    ></div>
+                    <p
+                        key={props.post.userName + `dash_post${props.id}`}
+                        className="dash_post_user"
+                    >
+                        <Link to={`/${props.post.userName}`}>
+                            {props.post.userName}
+                        </Link>
+                    </p>
+                </div>
+                {props.post.userName === props.user.userName && (
+                    <DeleteButton post={props.post} />
+                )}
             </div>
             {props.post.postImg && (
                 <div
@@ -48,10 +58,7 @@ const DashPost = (props) => {
                 className="dash_post_reactions"
                 key={`dash_post_reactions${props.id}`}
             >
-                <p key={`dash_post_like${props.post.userName}`}>
-                    <i className="material-icons left">thumb_up</i>{" "}
-                    {props.post.likes}
-                </p>
+                <LikeButton post={props.post} user={props.user} />
                 {/* <p key={`dash_post_comment${props.post.userName}`}>
                     <i className="material-icons left">sms</i>{" "}
                     {props.post.comments}

@@ -20,7 +20,9 @@ function App() {
     useEffect(() => {
         let token = localStorage.token;
         if (token) {
+            console.log(token);
             setIsLoggedIn(true);
+            setUser({ ...user, token: token });
         } else {
             setIsLoggedIn(false);
         }

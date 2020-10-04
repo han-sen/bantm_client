@@ -50,7 +50,7 @@ const Blog = (props) => {
             <div className="blog_posts_wrap fade-in">
                 {posts.length > 0 ? (
                     posts.map((post) => {
-                        return <DashPost post={post} />;
+                        return <DashPost post={post} user={props.user} />;
                     })
                 ) : (
                     <p>There doesn't appear to be any posts here...</p>

@@ -160,7 +160,7 @@ const EditDetails = (props) => {
                 onClick={openModal}
                 className="waves-effect waves-light btn post_button blue darken-1"
             >
-                <i className="material-icons">create</i>
+                <i className="material-icons">settings</i>
                 Edit
             </button>
             <Modal

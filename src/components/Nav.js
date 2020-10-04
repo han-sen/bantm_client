@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BantmLogo from "../bantm-logo.png";
 
 const Nav = (props) => {
     const handleLogout = () => {
@@ -30,7 +31,11 @@ const Nav = (props) => {
         <nav>
             <div className="nav-wrapper indigo darken-3">
                 <Link to="/" className="brand-logo">
-                    Bantm
+                    <img
+                        src={BantmLogo}
+                        className="bantm_logo"
+                        alt="bantm logo"
+                    />
                 </Link>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     {navBarItems}

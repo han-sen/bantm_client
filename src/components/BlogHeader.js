@@ -14,6 +14,7 @@ const BlogHeader = (props) => {
                 />
                 <div className="blog_header_details">
                     <h2>{props.blog.userName}</h2>
+                    <p>{props.blog.location}</p>
                     <p>{props.blog.bio}</p>
                 </div>
             </div>

@@ -77,7 +77,7 @@ function LogInForm(props) {
                         <label htmlFor="password">Password</label>
                         <input
                             className="input white-text"
-                            type="text"
+                            type="password"
                             name="password"
                             onChange={handleInput}
                             required={true}

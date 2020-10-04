@@ -5,6 +5,7 @@ import {
     timestamp,
 } from "../firebase/config";
 import Modal from "react-modal";
+import Progress from "./Progress";
 import axios from "axios";
 
 const customStyles = {
@@ -104,7 +105,7 @@ const NewPost = (props) => {
                 onClick={openModal}
                 className="waves-effect waves-light btn post_button"
             >
-                <i className="material-icons">fiber_new</i>
+                <i className="material-icons">palette</i>
                 Post
             </button>
             <Modal
@@ -121,6 +122,9 @@ const NewPost = (props) => {
                 >
                     <i className="material-icons">close</i>
                 </button>
+                {progress > 0 && progress < 100 && (
+                    <Progress progress={progress} />
+                )}
                 <form className="modal_form">
                     <label htmlFor="postBody">Image</label>
                     <input

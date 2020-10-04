@@ -3,7 +3,6 @@ import UserContext from "../context/UserContext";
 import axios from "axios";
 import Loader from "./Loader";
 import DashUserProfile from "./DashUserProfile";
-import DashPost from "./DashPost";
 import PostFeed from "./PostFeed";
 
 const Dashboard = (props) => {
@@ -24,9 +23,9 @@ const Dashboard = (props) => {
     }, []);
     return (
         <div className="dashboard_wrap">
-            <DashUserProfile user={props.user} />
+            <DashUserProfile user={props.user} setUser={props.setUser} />
             {posts.length > 0 ? (
-                <PostFeed posts={posts} />
+                <PostFeed user={props.user} posts={posts} />
             ) : (
                 <Loader text="Loading the latest posts..."></Loader>
             )}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
-import jwtDecode from "jwt-decode";
 import axios from "axios";
 import SignUpForm from "./components/SignUpForm";
 import LogInForm from "./components/LogInForm";
@@ -70,7 +69,7 @@ function App() {
                     <Route
                         path="/dashboard"
                         render={(props) => {
-                            return <Dashboard user={user} />;
+                            return <Dashboard user={user} setUser={setUser} />;
                         }}
                     />
                     <Route

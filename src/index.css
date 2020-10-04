@@ -51,12 +51,48 @@ code {
 
 .dash_user_profile {
     flex-direction: column;
+    padding: 2rem;
+    min-width: 20rem;
 }
 
 .dash_post_wrap {
-    background: rgb(41 54 147 / 50%);
+    margin: 1rem 0;
+    background: rgb(41 54 147);
     padding: 1rem;
     box-shadow: var(--shadow-1);
+    border-radius: 0.25rem;
+}
+
+.avatar_row {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 2rem;
+}
+
+.dash_post_photo {
+    height: 200px;
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+}
+
+.dash_post_reactions {
+    justify-content: space-between;
+}
+
+.dash_post_reactions p {
+    margin: 0;
+    padding: 0;
+}
+
+.dash_profile_subheader {
+    font-size: 0.8rem;
+    color: #039be5;
+    margin: 0;
+}
+
+.dash_profile_detail {
+    margin-top: 0.25rem;
 }
 
 .user_avatar {
@@ -72,6 +108,8 @@ code {
 
 .feed_wrap {
     min-width: 30rem;
+    overflow-y: auto;
+    max-height: 90vh;
 }
 
 /********** SIGNUP **************/
@@ -80,6 +118,28 @@ code {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/*********** MODAL *************/
+
+.modal_overlay {
+    background: #1a237ecc;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.modal_form {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.post_button {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
 }
 
 /*********** LOADER ************/
@@ -155,5 +215,37 @@ code {
     }
     to {
         opacity: 1;
+    }
+}
+
+.fade-in-up {
+    opacity: 0;
+    -webkit-animation: fade-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+    animation: fade-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+}
+
+@-webkit-keyframes fade-in-up {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(40px);
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(40px);
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
     }
 }

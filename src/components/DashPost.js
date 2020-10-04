@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -25,14 +24,22 @@ const DashPost = (props) => {
                     </Link>
                 </p>
             </div>
+            {props.post.postImg && (
+                <div
+                    style={{
+                        background: `url(${props.post.postImg})`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                    }}
+                    className="dash_post_photo"
+                />
+            )}
             <div
                 className="dash_post_postBody"
                 key={`dash_post_body${props.id}`}
             >
                 <p key={props.post.postBody}>{props.post.postBody}</p>
-                <p key={props.post.createdAt}>
-                    {dayjs(props.post.createdAt).fromNow()}
-                </p>
             </div>
             <div
                 className="dash_post_reactions"
@@ -42,9 +49,12 @@ const DashPost = (props) => {
                     <i className="material-icons left">thumb_up</i>{" "}
                     {props.post.likes}
                 </p>
-                <p key={`dash_post_comment${props.post.userName}`}>
+                {/* <p key={`dash_post_comment${props.post.userName}`}>
                     <i className="material-icons left">sms</i>{" "}
                     {props.post.comments}
+                </p> */}
+                <p key={props.post.createdAt}>
+                    {dayjs(props.post.createdAt).fromNow()}
                 </p>
             </div>
         </div>

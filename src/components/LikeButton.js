@@ -3,6 +3,7 @@ import axios from "axios";
 
 const LikeButton = (props) => {
     const [liked, setLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(props.post.likes);
     const handleLike = () => {
         if (liked === false) {
             axios
@@ -17,7 +18,9 @@ const LikeButton = (props) => {
                 )
                 .then((response) => {
                     const likeStatus = !liked;
+                    const newlikeCount = likeCount + 1;
                     setLiked(likeStatus);
+                    setLikeCount(newlikeCount);
                     console.log(response);
                 })
                 .catch((error) => {
@@ -45,9 +48,17 @@ const LikeButton = (props) => {
         }
     };
     return (
-        <button onClick={handleLike} className="btn">
-            <i className="material-icons left">favorite</i> {props.post.likes}
-        </button>
+        <>
+            {liked ? (
+                <button onClick={handleLike} className="btn red">
+                    <i className="material-icons left">favorite</i> {likeCount}
+                </button>
+            ) : (
+                <button onClick={handleLike} className="btn">
+                    <i className="material-icons left">favorite</i> {likeCount}
+                </button>
+            )}
+        </>
     );
 };
 

@@ -5,7 +5,14 @@ const PostFeed = (props) => {
     return (
         <section className="feed_wrap fade-in">
             {props.posts.map((post, i) => {
-                return <DashPost post={post} key={i} user={props.user} />;
+                return (
+                    <DashPost
+                        post={post}
+                        key={i}
+                        user={props.user}
+                        updatePosts={props.updatePosts}
+                    />
+                );
             })}
         </section>
     );

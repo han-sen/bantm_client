@@ -76,6 +76,9 @@ const NewPost = (props) => {
     const handleInput = (event) => {
         setPostContent(event.target.value);
     };
+    const handleAddPost = (newPost) => {
+        props.updatePosts([newPost, ...props.posts]);
+    };
     const handleSubmit = (event) => {
         event.preventDefault();
         axios
@@ -92,7 +95,10 @@ const NewPost = (props) => {
                 }
             )
             .then((response) => {
-                console.log(response);
+                console.log(response.data);
+                handleAddPost(response.data);
+            })
+            .then(() => {
                 closeModal();
             })
             .catch((error) => {

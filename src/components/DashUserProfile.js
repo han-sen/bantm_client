@@ -27,7 +27,7 @@ const DashUserProfile = (props) => {
             </div>
             <div className="dash_profile_buttons">
                 <EditDetails user={props.user} setUser={props.setUser} />
-                <NewPost />
+                <NewPost updatePosts={props.updatePosts} posts={props.posts} />
             </div>
         </div>
     );

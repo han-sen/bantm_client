@@ -23,9 +23,18 @@ const Dashboard = (props) => {
     }, []);
     return (
         <div className="dashboard_wrap">
-            <DashUserProfile user={props.user} setUser={props.setUser} />
+            <DashUserProfile
+                user={props.user}
+                setUser={props.setUser}
+                posts={posts}
+                updatePosts={updatePosts}
+            />
             {posts.length > 0 ? (
-                <PostFeed user={props.user} posts={posts} />
+                <PostFeed
+                    user={props.user}
+                    posts={posts}
+                    updatePosts={updatePosts}
+                />
             ) : (
                 <Loader text="Loading the latest posts..."></Loader>
             )}

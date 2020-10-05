@@ -77,6 +77,9 @@ const NewPost = (props) => {
         setPostContent(event.target.value);
     };
     const handleAddPost = (newPost) => {
+        if (!newPost.postImg) {
+            newPost.postImg = "";
+        }
         props.updatePosts([newPost, ...props.posts]);
     };
     const handleSubmit = (event) => {
